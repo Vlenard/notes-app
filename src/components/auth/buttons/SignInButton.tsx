@@ -2,12 +2,19 @@
 
 import { signIn } from "next-auth/react";
 
-const SignInButton = (props: any) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const SignInButton = (props: Props) => {
+
+  //@ts-ignore
+  const onClick = (ev: MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+    signIn();
+  };
+
   return (
-    <a onClick={(ev) => {
-      ev.preventDefault();
-      signIn();
-    }}>Sign in</a>
+    <a className="nav-link" onClick={onClick}>{props.children}</a>
   );
 };
 
