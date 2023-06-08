@@ -2,9 +2,19 @@
 
 import { signOut } from "next-auth/react";
 
-const SignOutButton = (props: any) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const SignOutButton = (props: Props) => {
+
+  //@ts-ignore
+  const onClick = (ev: MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+    signOut();
+  };
+
   return (
-    <button onClick={() => signOut()}>Sign Out</button>
+    <a className="nav-link" onClick={onClick}>{props.children}</a>
   );
 };
 

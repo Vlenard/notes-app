@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 
 type Props = {
@@ -42,7 +42,7 @@ const ThemeProvider = (props: Props) => {
     return (
         <themeContext.Provider value={[actualTheme, setTheme]}>
             <html className={actualTheme}>
-                <body>
+                <body className="dark:bg-darkGrey">
                     {props.children}
                 </body>
             </html>

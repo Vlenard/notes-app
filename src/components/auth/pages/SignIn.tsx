@@ -11,7 +11,7 @@ const SignIn = () => {
     const onSubmit = (ev: FormEvent) => {
         ev.preventDefault();
         if(username.current && password.current){
-            signIn("credentials", {username: username.current.value, password: password.current.value, redirect: true, callbackUrl: "/"});
+            signIn("credentials", {username: username.current.value, password: password.current.value, redirect: true, callbackUrl: "/notes"});
         }
     };
 

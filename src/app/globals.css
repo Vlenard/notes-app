@@ -1,26 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("../style/nav.css");
 
 @font-face {
     font-family: NYCD;
     src: url("../../public/NothingYouCouldDo-Regular.ttf");
 }
 
-.nav-link{
-    cursor: pointer;
-    background-color: transparent;
-    padding: 0.25rem 0.5rem;
-    border-radius: 30px;
-    color: black;
-    transition: .3s ease-in-out;
+:is(.dark *){
+    color: #aaa;
 }
 
-:is(.dark .nav-link){
-    color: #fff;
-}
-
-.nav-link:hover{
-    background-color: #0095ff;
-    color: #fff;
-}

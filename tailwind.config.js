@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        "darkGrey": "#303030",
+        "lightGrey": "#aaaaaa"
+      },
       fontFamily: {
         "hand": ["NYCD", "sans-serif"]
       }

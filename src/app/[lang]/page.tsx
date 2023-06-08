@@ -4,7 +4,7 @@ import { getDictionary } from "./dictionaries";
 import Navbar from "@/components/nav/Navbar";
 import Link from "next/link";
 import SignInButton from "@/components/auth/buttons/SignInButton";
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
 type Props = {
   params: {
@@ -17,23 +17,20 @@ export default async function Page(props: Props) {
   const dict = await getDictionary(props.params.lang);
   const session = await getServerSession(authOptions);
 
+  if(session !== null) 
+    redirect("/notes");
+
   return (
     <>
       <Navbar title={dict.title}>
-        {session !== null ? (
-          <>
-
-          </>
-        ) : (
-          <>
-            <SignInButton>{dict.signin}</SignInButton>
-            <Link className="nav-link" href="/auth/registration">{dict.registration}</Link>
-          </>
-        )}
+        <>
+          <SignInButton>{dict.signin}</SignInButton>
+          <Link className="nav-link" href="/registration">{dict.registration}</Link>
+        </>
       </Navbar>
 
-      <div className="absolute h-full w-full flex justify-center items-center">
-        <p className="font-hand text-8xl">{dict.hello}</p>
+      <div className="absolute h-full w-full flex justify-center items-center dark:bg-darkGrey">
+        <p className="font-hand text-8xl dark:text-lightGrey text-center">{dict.hello}</p>
       </div>
     </>
   );
