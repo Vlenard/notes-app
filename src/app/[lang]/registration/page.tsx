@@ -1,6 +1,5 @@
 import Navbar from "@/components/nav/Navbar";
 import { getDictionary } from "../dictionaries";
-import SignInButton from "@/components/auth/buttons/SignInButton";
 import Link from "next/link";
 import Registration from "@/components/auth/pages/Registration";
 
@@ -17,8 +16,8 @@ export default async function Page(props: Props) {
     return (
         <>
             <Navbar title={dict.registration}>
-                <SignInButton>{dict.signin}</SignInButton>
-                <Link className="nav-link" href={"/"}>{dict.back}</Link>
+                <Link className="nav-link" href={`${props.params.lang}/signin`}>{dict.signin}</Link>
+                <Link className="nav-link" href={`/${props.params.lang}`}>{dict.back}</Link>
             </Navbar>
 
             <Registration dict={dict}/>

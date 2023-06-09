@@ -3,7 +3,6 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getDictionary } from "./dictionaries";
 import Navbar from "@/components/nav/Navbar";
 import Link from "next/link";
-import SignInButton from "@/components/auth/buttons/SignInButton";
 import { redirect } from "next/navigation";
 
 type Props = {
@@ -24,8 +23,8 @@ export default async function Page(props: Props) {
     <>
       <Navbar title={dict.title}>
         <>
-          <SignInButton>{dict.signin}</SignInButton>
-          <Link className="nav-link" href="/registration">{dict.registration}</Link>
+          <Link className="nav-link" href={`${props.params.lang}/signin`}>{dict.signin}</Link>
+          <Link className="nav-link" href={`${props.params.lang}/registration`}>{dict.registration}</Link>
         </>
       </Navbar>
 

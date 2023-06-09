@@ -3,5 +3,11 @@
     "signin": "Bejelentkezés",
     "registration": "Regisztráció",
     "hello": "Szia idegen!",
-    "back": "Vissza"
+    "back": "Vissza",
+    "regSuccess": "Sikeresen regisztráltál",
+    "name": "Név",
+    "password": "Jelszó",
+    "error": {
+        "registration": "Nem sikerült regisztrálni!"
+    }
 }

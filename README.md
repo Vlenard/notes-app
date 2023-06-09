@@ -17,6 +17,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Versions
 
+### 0.1.2
+ * Registration page & functionality
+ * Save users into database
+ * Admin & user role
+
+
 ### 0.1.1
 * Internatialization
 * Theme

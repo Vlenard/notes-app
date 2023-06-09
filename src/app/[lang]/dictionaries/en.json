@@ -3,5 +3,11 @@
     "signin": "Sign In",
     "registration": "Registration",
     "hello": "Hello stranger!",
-    "back": "Back"
+    "back": "Back",
+    "regSuccess": "You registration was succsesfull,",
+    "name": "Name",
+    "password": "Password",
+    "error": {
+        "registration": "Something goes wrong!"
+    }
 }
