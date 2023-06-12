@@ -3,6 +3,7 @@
 import { FormEvent, useRef, useState } from "react";
 import FormInput from "@/components/inputs/FormInput";
 import { usePathname, useRouter } from "next/navigation";
+import Submit from "@/components/inputs/Submit";
 
 type Props = {
     dict: any
@@ -56,7 +57,7 @@ const Registration = (props: Props) => {
 
                         <FormInput label={props.dict.password} placeholder="***" type="password" ref={password_ref} />
 
-                        <input type="submit" className="" value={props.dict.registration} />
+                        <Submit>{props.dict.registration}</Submit>
 
                         {error && <span>{props.dict.error.registration}</span>}
                     </div>

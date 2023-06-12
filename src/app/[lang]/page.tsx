@@ -4,6 +4,7 @@ import { getDictionary } from "./dictionaries";
 import Navbar from "@/components/nav/Navbar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import SignInButton from "@/components/auth/buttons/SignInButton";
 
 type Props = {
   params: {
@@ -17,7 +18,7 @@ export default async function Page(props: Props) {
   const session = await getServerSession(authOptions);
 
   if(session !== null) 
-    redirect("/notes");
+    redirect(`${props.params.lang}/notes`);
 
   return (
     <>

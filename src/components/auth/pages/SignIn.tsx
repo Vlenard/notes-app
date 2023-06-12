@@ -1,32 +1,46 @@
 "use client"
 
-import { signIn } from "next-auth/react";
+import FormInput from "@/components/inputs/FormInput";
+import Submit from "@/components/inputs/Submit";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { FormEvent, useRef } from "react";
 
-const SignIn = () => {
+type Props = {
+    lang: string;
+    dict: any;
+};
 
-    const username = useRef<HTMLInputElement>(null);
-    const password = useRef<HTMLInputElement>(null);
+const SignIn = (props: Props) => {
+
+    const session = useSession();
+    const router = useRouter();
+    const email_ref = useRef<HTMLInputElement>(null);
+    const password_ref = useRef<HTMLInputElement>(null);
 
     const onSubmit = (ev: FormEvent) => {
         ev.preventDefault();
-        if(username.current && password.current){
-            signIn("credentials", {username: username.current.value, password: password.current.value, redirect: true, callbackUrl: "/notes"});
+        if (email_ref.current && password_ref.current) {
+            signIn("credentials", { username: email_ref.current.value, password: password_ref.current.value, redirect: true, callbackUrl: `/${props.lang}/notes` });
         }
     };
 
+
+    if(!session){
+        router.push(`${props.lang}/notes`);
+    }
+
     return (
-        <form action="#" onSubmit={onSubmit}>
-            <label htmlFor="username">Username</label>
-            <br />
-            <input ref={username} type="text" name="username" id="username" placeholder="Jenő"/>
-            <br />
-            <label htmlFor="password">Password</label>
-            <br />
-            <input ref={password} type="password" name="password" id="password" />
-            <br />
-            <input type="submit" value="Sign in" />
-        </form>
+        <div className="pt-24 sm:pt-20 px-16 flex justify-center">
+            <form action="#" onSubmit={onSubmit}>
+                <div className="flex flex-col container items-center py-32 px-20 mt-12 space-y-5 shadow-lg rounded-lg">
+                    <FormInput label="Email" placeholder="Kufi.cuki@gmail.com" ref={email_ref} type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                    <FormInput label="Password" placeholder="***" ref={password_ref} type="password" />
+              
+                    <Submit>{props.dict.signin}</Submit>
+                </div>
+            </form>
+        </div>
     );
 };
 

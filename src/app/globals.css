@@ -4,11 +4,15 @@
 @import url("../style/nav.css");
 
 @font-face {
-    font-family: NYCD;
-    src: url("../../public/NothingYouCouldDo-Regular.ttf");
+    font-family: Pacifico;
+    src: url("../../public/fonts/Pacifico-Regular.ttf");
 }
 
 :is(.dark *){
     color: #aaa;
 }
 
+
+body{
+    scroll-behavior: smooth;
+}

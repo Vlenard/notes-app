@@ -1,11 +1,26 @@
+import Navbar from "@/components/nav/Navbar";
+import { getDictionary } from "../dictionaries";
+import Link from "next/link";
 import SignIn from "@/components/auth/pages/SignIn";
 
-export default function Page() {
+type Props = {
+    params: {
+        lang: string
+    }
+};
+
+export default async function Page(props: Props) {
+
+    const dict = await getDictionary(props.params.lang);
+
     return (
-        <div className="p-2">
-            <h1>Sign in</h1>
-            <hr />
-            <SignIn />
-        </div>
+        <>
+            <Navbar title={dict.signin}>
+                <Link className="nav-link" href={`${props.params.lang}/registration`}>{dict.registration}</Link>
+                <Link className="nav-link" href={`/${props.params.lang}`}>{dict.back}</Link>
+            </Navbar>
+
+            <SignIn dict={dict} lang={props.params.lang}/>
+        </>
     );
 };

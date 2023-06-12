@@ -1,12 +1,16 @@
 {
     "title": "Notes",
-    "signin": "Sign In",
+    "signin": "Sign in",
+    "signout": "Sign out",
     "registration": "Registration",
     "hello": "Hello stranger!",
     "back": "Back",
     "regSuccess": "You registration was succsesfull,",
     "name": "Name",
     "password": "Password",
+    "profile": "Profile",
+    "myNotes": "My Notes",
+    "write": "Write",
     "error": {
         "registration": "Something goes wrong!"
     }

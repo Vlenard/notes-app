@@ -1,12 +1,16 @@
 {
     "title": "Jegyzetek",
     "signin": "Bejelentkezés",
+    "signout": "Kijelentkezés",
     "registration": "Regisztráció",
     "hello": "Szia idegen!",
     "back": "Vissza",
     "regSuccess": "Sikeresen regisztráltál",
     "name": "Név",
     "password": "Jelszó",
+    "profile": "Profil",
+    "myNotes": "Jegyzeteim",
+    "write": "Írás",    
     "error": {
         "registration": "Nem sikerült regisztrálni!"
     }

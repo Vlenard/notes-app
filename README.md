@@ -17,6 +17,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Versions
 
+### 0.1.3
+ * Sign in page
+ * Sign in from database
+ * Home (alias notes)
+
 ### 0.1.2
  * Registration page & functionality
  * Save users into database

@@ -10,10 +10,11 @@ module.exports = {
     extend: {
       colors: {
         "darkGrey": "#303030",
-        "lightGrey": "#aaaaaa"
+        "lightGrey": "#aaaaaa",
+        "fblue": "#0095ff"
       },
       fontFamily: {
-        "hand": ["NYCD", "sans-serif"]
+        "hand": ["Pacifico", "sans-serif"]
       }
     },
   },
