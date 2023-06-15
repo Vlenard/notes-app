@@ -12,25 +12,23 @@ const getLocale = (req: NextRequest): string => {
 }; 
 
 export const middleware = (req: NextRequest): NextResponse | void => {
-    const pathname: string = req.nextUrl.pathname;
+        const pathname: string = req.nextUrl.pathname;
 
-    if(!pathname.includes("api")){//if not an api request
         // Check if there is any supported locale in the pathname
         const missingLocale: boolean = locales.every(locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`);
-
+    
         // Redirect if there is no locale
         if(missingLocale){
             const locale: string = getLocale(req);
-
+    
             // e.g. incoming request is /products
             // The new URL is now /en-US/products
             return NextResponse.redirect(
                 new URL(`/${locale}/${pathname}`, req.url)
             );
         }
-    }
 };
 
 export const config = {
-    matcher: ["/((?!_next).*)"]
-}
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"]
+};

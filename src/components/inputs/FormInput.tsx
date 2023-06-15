@@ -3,6 +3,7 @@
 import React from "react";
 
 type Props = {
+    className?: string;
     label?: string;
     placeholder?: string;
     type?: React.HTMLInputTypeAttribute;
@@ -16,7 +17,7 @@ const FormInput = React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLIn
             {props.label}
             <br />
             <input 
-                className="w-full rounded-lg py-2 px-3 dark:text-lightGrey dark:bg-darkGrey focus:border-[#0095ff]" 
+                className={`w-full rounded-lg py-2 px-3 dark:text-lightGrey dark:bg-darkGrey focus:border-[#0095ff] ${props.className}`}
                 type={props.type} 
                 ref={ref} 
                 placeholder={props.placeholder} 

@@ -10,7 +10,8 @@
     "password": "Jelszó",
     "profile": "Profil",
     "myNotes": "Jegyzeteim",
-    "write": "Írás",    
+    "write": "Írás",  
+    "save": "Mentés",  
     "error": {
         "registration": "Nem sikerült regisztrálni!"
     }

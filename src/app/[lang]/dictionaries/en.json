@@ -11,6 +11,7 @@
     "profile": "Profile",
     "myNotes": "My Notes",
     "write": "Write",
+    "save": "Save",
     "error": {
         "registration": "Something goes wrong!"
     }

@@ -26,5 +26,4 @@ model User {
   password String
   email    String  @unique
   notes    Note[]
-  admin    Boolean @default(false)
 }

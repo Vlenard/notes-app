@@ -19,16 +19,16 @@ export default async function Layout(props: Props) {
     const dict = await getDictionary(props.params.lang);
     const session = await getServerSession(authOptions);
 
-    if (session === null) {
+    if (!session) {
         redirect(`/${props.params.lang}`);
     }
 
     return (
         <>
             <Navbar title={dict.title}>
-                <Link className="nav-link" href={`${props.params.lang}/registration`}>{dict.write}</Link>
+                <Link className="nav-link" href={`${props.params.lang}/notes/write`}>{dict.write}</Link>
                 <Link className="nav-link" href={`${props.params.lang}/notes#myNotes`} scroll={false}>{dict.myNotes}</Link>
-                <Link className="nav-link" href={`${props.params.lang}/registration`}>{dict.profile}</Link>
+                <Link className="nav-link" href={`${props.params.lang}/notes/profile`}>{dict.profile}</Link>
                 <SignOutButton>{dict.signout}</SignOutButton>
             </Navbar>
 

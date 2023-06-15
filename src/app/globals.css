@@ -8,6 +8,10 @@
     src: url("../../public/fonts/Pacifico-Regular.ttf");
 }
 
+*{
+    scroll-behavior: smooth;
+}
+
 :is(.dark *){
     color: #aaa;
 }
@@ -15,4 +19,13 @@
 
 body{
     scroll-behavior: smooth;
+}
+
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-placeholder);
+    color: #aaa;
+}
+
+:is(.dark div)[contentEditable=true]:empty:not(:focus):before {
+    color: #777;
 }
