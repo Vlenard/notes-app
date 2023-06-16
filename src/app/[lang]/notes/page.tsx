@@ -1,10 +1,10 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Session, getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
-import Loading from "./loading";
 import Link from "next/link";
 import { getDictionary } from "../dictionaries";
+import { Note, PrismaClient } from "@prisma/client";
+import NotesIndex from "@/components/notes/NotesIndex";
 
 type Props = {
     params: {
@@ -12,8 +12,25 @@ type Props = {
     }
 }
 
+export const revalidate = 0;
+
+const prisma = new PrismaClient();
+
 const getNotes = async (session: Session) => {
 
+    const user = await prisma.user.findUnique({
+        where: {
+            email: session.user?.email as string
+        }
+    });
+
+    const notes = await prisma.note.findMany({
+        where: {
+            authorId: user?.id
+        }
+    });
+
+    return notes;
 };
 
 export default async function Page(props: Props) {
@@ -21,7 +38,7 @@ export default async function Page(props: Props) {
     const session = await getServerSession(authOptions);
     const dict = await getDictionary(props.params.lang);
 
-    const works = await getNotes(session as Session);
+    const notes: Array<Note> = await getNotes(session as Session);
 
     return (
         <>
@@ -32,11 +49,13 @@ export default async function Page(props: Props) {
                 </Link>
             </div>
             
-            <div id="myNotes" className="pt-24 md:pt-20">
-                <Suspense fallback={<Loading />}>
-                    
-                </Suspense>
-            </div>
+            <div id="myNotes" className="pt-24 md:pt-20 grid gap-10 md:grid-cols-2 grid-cols-1">
+                {
+                    notes.map((item, i) => (
+                        <NotesIndex note={item} key={i}/>
+                    ))
+                }
+            </div> 
         </>
     );
 }

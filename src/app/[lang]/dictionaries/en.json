@@ -12,6 +12,7 @@
     "myNotes": "My Notes",
     "write": "Write",
     "save": "Save",
+    "saved": "Saved",
     "error": {
         "registration": "Something goes wrong!"
     }

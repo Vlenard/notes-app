@@ -26,13 +26,13 @@ export default async function Layout(props: Props) {
     return (
         <>
             <Navbar title={dict.title}>
-                <Link className="nav-link" href={`${props.params.lang}/notes/write`}>{dict.write}</Link>
+                <Link className="nav-link" href={`${props.params.lang}/notes/new`}>{dict.write}</Link>
                 <Link className="nav-link" href={`${props.params.lang}/notes#myNotes`} scroll={false}>{dict.myNotes}</Link>
                 <Link className="nav-link" href={`${props.params.lang}/notes/profile`}>{dict.profile}</Link>
                 <SignOutButton>{dict.signout}</SignOutButton>
             </Navbar>
 
-            <div className="dark:bg-darkGrey">
+            <div className="dark:bg-darkGrey pb-10">
                 {props.children}
             </div>
         </>

@@ -12,6 +12,7 @@
     "myNotes": "Jegyzeteim",
     "write": "Írás",  
     "save": "Mentés",  
+    "saved": "Mentve",
     "error": {
         "registration": "Nem sikerült regisztrálni!"
     }

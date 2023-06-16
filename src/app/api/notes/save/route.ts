@@ -1,13 +1,14 @@
-import { PrismaClient } from "@prisma/client";
+import { Note, PrismaClient, User } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
 
-    const data = await req.json();
+    const data: any = await req.json();
     const prisma = new PrismaClient();
+    let res = null;
 
     if(data.id){
-        const note = await prisma.note.update({
+        res = await prisma.note.update({
             where: {
                 id: data.id
             },
@@ -16,25 +17,26 @@ export async function POST(req: NextRequest) {
                 content: data.content,
             }
         });
-
-        return NextResponse.json({success: note ? true : false});
-    }else{
-
-        const user = await prisma.user.findUnique({
-            where: {
-                email: data.email
-            }
-        });
+        console.log(res);
         
-
-        const note = await prisma.note.create({
+    }else{
+        res = await prisma.user.update({
+            where: {
+                id: data.autherId
+            },
             data: {
-                title: data.title,
-                content: data.content,
-                authorId: user?.id as number
+                notes: {
+                    create: {
+                        title: data.title,
+                        content: data.content
+                    }
+                }
+            },
+            include: {
+                notes: true
             }
         });
-
-        return NextResponse.json({success: note ? true : false});
     }
+
+    return NextResponse.json(res);
 }
