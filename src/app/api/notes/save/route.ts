@@ -1,10 +1,9 @@
-import { Note, PrismaClient, User } from "@prisma/client";
+import { prisma } from "@/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
 
     const data: any = await req.json();
-    const prisma = new PrismaClient();
     let res = null;
 
     if(data.id){
@@ -17,8 +16,6 @@ export async function POST(req: NextRequest) {
                 content: data.content,
             }
         });
-        console.log(res);
-        
     }else{
         res = await prisma.user.update({
             where: {

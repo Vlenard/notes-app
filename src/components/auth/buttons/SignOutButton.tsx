@@ -1,6 +1,7 @@
 "use client"
 
 import { signOut } from "next-auth/react";
+import { useParams } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -8,9 +9,11 @@ type Props = {
 
 const SignOutButton = (props: Props) => {
 
+  const params = useParams();
+
   //@ts-ignore
   const onClick = (ev: MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
-    signOut();
+    signOut({redirect: true, callbackUrl: `/${params.lang}`});
   };
 
   return (

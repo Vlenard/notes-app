@@ -1,18 +1,17 @@
 import Editor from "@/components/inputs/Editor";
 import { getDictionary } from "../../dictionaries";
-import { Note, PrismaClient } from "@prisma/client";
+import { Note } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { cache } from "react";
+import { prisma } from "@/prismaClient";
 
 type Props = {
     params: {
         lang: string;
         id: string;
     };
-}
-
-const prisma = new PrismaClient();
+};
 
 const getNote = async (id: string): Promise<Note | null> => {
     if(id === "new") return null;

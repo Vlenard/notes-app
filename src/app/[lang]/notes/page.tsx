@@ -1,10 +1,11 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Session, getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { getDictionary } from "../dictionaries";
-import { Note, PrismaClient } from "@prisma/client";
+import { Note, User } from "@prisma/client";
 import NotesIndex from "@/components/notes/NotesIndex";
+import { getNotes, getUser } from "@/prismaClient";
+import { AES } from "crypto-js";
 
 type Props = {
     params: {
@@ -14,31 +15,15 @@ type Props = {
 
 export const revalidate = 0;
 
-const prisma = new PrismaClient();
-
-const getNotes = async (session: Session) => {
-
-    const user = await prisma.user.findUnique({
-        where: {
-            email: session.user?.email as string
-        }
-    });
-
-    const notes = await prisma.note.findMany({
-        where: {
-            authorId: user?.id
-        }
-    });
-
-    return notes;
-};
-
 export default async function Page(props: Props) {
 
     const session = await getServerSession(authOptions);
     const dict = await getDictionary(props.params.lang);
+    const user = await getUser(session?.user?.email as string);
+    const notes: Array<Note> = await getNotes(user as User);
 
-    const notes: Array<Note> = await getNotes(session as Session);
+    //@ts-ignore
+    const hmacDigest = AES.encrypt(`${user?.email as string};${user?.password as string}`, process.env.NOTES_SECRET).toString();
 
     return (
         <>
@@ -48,14 +33,14 @@ export default async function Page(props: Props) {
                     {dict.myNotes}
                 </Link>
             </div>
-            
+
             <div id="myNotes" className="pt-24 md:pt-20 grid gap-10 md:grid-cols-2 grid-cols-1">
                 {
                     notes.map((item, i) => (
-                        <NotesIndex note={item} key={i}/>
+                        <NotesIndex authKey={hmacDigest} note={item} key={i} />
                     ))
                 }
-            </div> 
+            </div>
         </>
     );
 }

@@ -42,6 +42,9 @@ const ThemeProvider = (props: Props) => {
     return (
         <themeContext.Provider value={[actualTheme, setTheme]}>
             <html className={actualTheme}>
+                <head>
+                    <script src="http://localhost:8097"></script>    
+                </head>
                 <body className="dark:bg-darkGrey">
                     {props.children}
                 </body>

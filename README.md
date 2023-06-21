@@ -15,7 +15,17 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Registrate admin http://localhost:3000/api/auth/admin?[email=value]
+
 ## Versions
+
+### 0.1.5
+ * Single instance of prisma client
+ * Delete note
+ * Admin page
+ * Admin role
+    - Admin has permission to delete user
+    - Set new admin
 
 ### 0.1.4
  * Home listing notes
@@ -33,7 +43,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
  * Registration page & functionality
  * Save users into database
  * Admin & user role
-
 
 ### 0.1.1
 * Internatialization

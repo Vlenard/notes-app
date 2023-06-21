@@ -15,15 +15,17 @@ model Note {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   content   String?
-  title     String   @unique
+  title     String
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
 }
 
 model User {
   id       Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
   name     String?
   password String
   email    String  @unique
+  admin    Boolean @default(false)
   notes    Note[]
 }
