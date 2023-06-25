@@ -3,11 +3,10 @@
 import FormInput from "@/components/inputs/FormInput";
 import Submit from "@/components/inputs/Submit";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import React, { FormEvent, useRef } from "react";
+import { useParams, useRouter } from "next/navigation";
+import React, { FormEvent, useEffect, useRef } from "react";
 
 type Props = {
-    lang: string;
     dict: any;
 };
 
@@ -15,20 +14,22 @@ const SignIn = (props: Props) => {
 
     const session = useSession();
     const router = useRouter();
+    const params = useParams();
     const email_ref = useRef<HTMLInputElement>(null);
     const password_ref = useRef<HTMLInputElement>(null);
 
-    const onSubmit = (ev: FormEvent) => {
+    const onSubmit = async (ev: FormEvent) => {
         ev.preventDefault();
         if (email_ref.current && password_ref.current) {
-            signIn("credentials", { username: email_ref.current.value, password: password_ref.current.value, redirect: true, callbackUrl: `/${props.lang}/notes` });
+            signIn("credentials", { username: email_ref.current.value, password: password_ref.current.value, redirect: false});
         }
     };
 
-
-    if(!session){
-        router.push(`${props.lang}/notes`);
-    }
+    useEffect((): void => {
+        if(session.status === "authenticated"){
+            router.push(`${params.lang}/${session.data?.user?.name}`);
+        }
+    }, [session]);
 
     return (
         <div className="pt-24 sm:pt-20 px-16 flex justify-center">

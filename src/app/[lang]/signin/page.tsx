@@ -8,7 +8,8 @@ import { redirect } from "next/navigation";
 
 type Props = {
     params: {
-        lang: string
+        lang: string;
+        user: string;
     }
 };
 
@@ -18,7 +19,7 @@ export default async function Page(props: Props) {
     const session = await getServerSession(authOptions);
 
     if(session){
-        redirect(`/${props.params.lang}/notes`);
+        redirect(`/${props.params.lang}/${props.params.user}`);
     }
 
     return (
@@ -28,7 +29,7 @@ export default async function Page(props: Props) {
                 <Link className="nav-link" href={`/${props.params.lang}`}>{dict.back}</Link>
             </Navbar>
 
-            <SignIn dict={dict} lang={props.params.lang}/>
+            <SignIn dict={dict} />
         </>
     );
 };

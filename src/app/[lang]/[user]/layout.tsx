@@ -11,26 +11,30 @@ import { getUser } from "@/prismaClient";
 type Props = {
     children: React.ReactNode;
     params: {
-        lang: string
+        lang: string;
+        user: string;
     }
 };
+
+export const revalidate = 0;
 
 export default async function Layout(props: Props) {
 
     const dict = await getDictionary(props.params.lang);
     const session = await getServerSession(authOptions);
-    const user = await getUser(session?.user?.email as string);
 
     if (!session) {
         redirect(`/${props.params.lang}`);
     }
 
+    const user = await getUser(session?.user?.email as string);
+
     return (
         <>
             <Navbar title={dict.title}>
-                <Link className="nav-link" href={`${props.params.lang}/notes/new`}>{dict.write}</Link>
-                <Link className="nav-link" href={`${props.params.lang}/notes#myNotes`} scroll={false}>{dict.myNotes}</Link>
-                <Link className="nav-link" href={`${props.params.lang}/notes/profile`}>{dict.profile}</Link>
+                <Link className="nav-link" href={`${props.params.lang}/${props.params.user}/new`}>{dict.write}</Link>
+                <Link className="nav-link" href={`${props.params.lang}/${props.params.user}#myNotes`} scroll={false}>{dict.myNotes}</Link>
+                <Link className="nav-link" href={`${props.params.lang}/${props.params.user}/profile`}>{dict.profile}</Link>
                 {user?.admin && <Link className="nav-link" href={`${props.params.lang}/notes/admin`}>Admin</Link>}
                 <SignOutButton>{dict.signout}</SignOutButton>
             </Navbar>

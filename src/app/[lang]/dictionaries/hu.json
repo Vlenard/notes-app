@@ -2,18 +2,28 @@
     "title": "Jegyzetek",
     "signin": "Bejelentkezés",
     "signout": "Kijelentkezés",
+    "deleteProfile": "Fiók törlése",
     "registration": "Regisztráció",
     "hello": "Szia idegen!",
     "back": "Vissza",
     "regSuccess": "Sikeresen regisztráltál",
     "name": "Név",
     "password": "Jelszó",
+    "changePassword": "Jelszó módosítás",
     "profile": "Profil",
     "myNotes": "Jegyzeteim",
-    "write": "Írás",  
+    "write": "Írás", 
+    "edit": "Szerkeztés",
+    "delete": "Törlés",
     "save": "Mentés",  
     "saved": "Mentve",
+    "new": "Új",
     "error": {
-        "registration": "Nem sikerült regisztrálni!"
+        "registration": "Nem sikerült regisztrálni!",
+        "editProfileEmpty": "Nincs kitöltve az űrlap"
+    },
+    "warnings": {
+        "editProfile": "Adat változás esetén újra be kell jelentkezned",
+        "signout": "Kijelentkeztetés..."
     }
 }

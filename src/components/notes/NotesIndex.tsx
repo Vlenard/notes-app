@@ -1,12 +1,13 @@
 "use client"
 
 import { Note } from "@prisma/client";
-import ActionButton from "../inputs/ActionButton";
+import ActionButton from "../auth/buttons/ActionButton";
 import { useParams, useRouter } from "next/navigation";
 
 type Props = {
     authKey: string;
     note: Note;
+    dict: any;
 };
 
 const NotesIndex = (props: Props) => {
@@ -32,8 +33,11 @@ const NotesIndex = (props: Props) => {
     }; 
 
     const edit = () => {
-        router.push(`/${params.lang}/notes/${props.note.id}`);
+        router.push(`/${params.lang}/${params.user}/${props.note.id}`);
     };
+
+    console.log(props.dict);
+    
 
     return (
         <div className="flex flex-col min-h-[300px] min-w-[300px] p-10 rounded-lg shadow-lg">
@@ -46,8 +50,8 @@ const NotesIndex = (props: Props) => {
                 <li>Updated: {props.note.updatedAt.toUTCString()}</li>
             </ul>
             <div className="flex flex-1 items-end justify-end space-x-2">
-                <ActionButton onClick={deleteNote}>Delete</ActionButton>
-                <ActionButton onClick={edit}>Edit</ActionButton>
+                <ActionButton onClick={deleteNote}>{props.dict.delete}</ActionButton>
+                <ActionButton onClick={edit}>{props.dict.edit}</ActionButton>
             </div>
         </div>
     );

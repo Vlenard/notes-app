@@ -13,8 +13,6 @@ type Props = {
     }
 }
 
-export const revalidate = 0;
-
 export default async function Page(props: Props) {
 
     const session = await getServerSession(authOptions);
@@ -28,7 +26,7 @@ export default async function Page(props: Props) {
     return (
         <>
             <div className="w-screen h-screen flex flex-col space-y-10 justify-center items-center">
-                <p className="font-hand text-8xl dark:text-lightGrey text-center">Hello {session?.user?.name}</p>
+                <p className="font-hand text-8xl dark:text-lightGrey text-center">Hello {user?.name}</p>
                 <Link className="nav-link text-4xl px-10 py-5 rounded-full" href={`/${props.params.lang}/notes#myNotes`} scroll={false}>
                     {dict.myNotes}
                 </Link>
@@ -37,7 +35,7 @@ export default async function Page(props: Props) {
             <div id="myNotes" className="pt-24 md:pt-20 grid gap-10 md:grid-cols-2 grid-cols-1">
                 {
                     notes.map((item, i) => (
-                        <NotesIndex authKey={hmacDigest} note={item} key={i} />
+                        <NotesIndex dict={dict} authKey={hmacDigest} note={item} key={i} />
                     ))
                 }
             </div>

@@ -1,10 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+
+import { prisma } from "@/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
 
     const data = await req.json();
-    const prisma = new PrismaClient();
 
     const newUser = await prisma.user.create({
         data: {

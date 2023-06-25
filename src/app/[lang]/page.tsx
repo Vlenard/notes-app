@@ -4,7 +4,6 @@ import { getDictionary } from "./dictionaries";
 import Navbar from "@/components/nav/Navbar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import SignInButton from "@/components/auth/buttons/SignInButton";
 
 type Props = {
   params: {

@@ -2,18 +2,28 @@
     "title": "Notes",
     "signin": "Sign in",
     "signout": "Sign out",
+    "deleteProfile": "Delete Profile",
     "registration": "Registration",
     "hello": "Hello stranger!",
     "back": "Back",
     "regSuccess": "You registration was succsesfull,",
     "name": "Name",
     "password": "Password",
+    "changePassword": "Jelszó módosítás",
     "profile": "Profile",
     "myNotes": "My Notes",
     "write": "Write",
     "save": "Save",
     "saved": "Saved",
+    "edit": "Edit",
+    "delete": "Delete",
+    "new": "New",
     "error": {
-        "registration": "Something goes wrong!"
+        "registration": "Something goes wrong!",
+        "editProfileEmpty": "Forms fields are not filled"
+    },
+    "warnings": {
+        "editProfile": "After the data changes you have to sign in again",
+        "signout": "Signing out..."
     }
 }

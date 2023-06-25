@@ -9,7 +9,7 @@ import { prisma } from "@/prismaClient";
 type Props = {
     params: {
         lang: string;
-        id: string;
+        noteId: string;
     };
 };
 
@@ -42,7 +42,7 @@ export default async function page(props: Props) {
 
     const session = await getServerSession(authOptions);
     const dict = await getDictionary(props.params.lang);
-    const note = await getNote(props.params.id);
+    const note = await getNote(props.params.noteId);
     const authorId = await getAutherId(session?.user?.email as string);
 
     return (

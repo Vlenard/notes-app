@@ -19,6 +19,14 @@ Registrate admin http://localhost:3000/api/auth/admin?[email=value]
 
 ## Versions
 
+### 0.1.6
+ * Profile
+    - Delete
+    - Edit
+ * New functions
+ * Bug fixes
+ * New routes
+
 ### 0.1.5
  * Single instance of prisma client
  * Delete note

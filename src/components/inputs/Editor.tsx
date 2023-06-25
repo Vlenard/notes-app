@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Textarea from "./Textarea";
-import ActionButton from "./ActionButton";
+import ActionButton from "../auth/buttons/ActionButton";
 import { Note } from "@prisma/client";
+import Saved from "../saved/Saved";
 
 type Props = {
     dict: any;
@@ -67,9 +68,7 @@ const Editor = (props: Props) => {
     return (
         <>
             {saved.value && (
-                <div className="fixed top-[90%] left-[90%] bg-fblue text-white rounded-full py-2 px-5">
-                    {props.dict.saved}
-                </div>
+                <Saved dict={props.dict}/>
             )}
 
             <div className="flex justify-between space-x-5 w-full px-10 mb-2">
