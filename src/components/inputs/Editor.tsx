@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Textarea from "./Textarea";
-import ActionButton from "../auth/buttons/ActionButton";
+import ActionButton from "./ActionButton";
 import { Note } from "@prisma/client";
 import Saved from "../saved/Saved";
+import { useRouter } from "next/navigation";
 
 type Props = {
     dict: any;
@@ -14,6 +15,7 @@ type Props = {
 
 const Editor = (props: Props) => {
 
+    const router = useRouter();
     const title_ref = useRef<HTMLInputElement>(null);
     const content_ref = useRef<HTMLInputElement>(null);
     const [note, setNote] = useState<Note | null>(props.note);
@@ -73,7 +75,8 @@ const Editor = (props: Props) => {
 
             <div className="flex justify-between space-x-5 w-full px-10 mb-2">
                 <Textarea ref={title_ref} placeholder="Matrac">{props?.note?.title}</Textarea>
-                <ActionButton onClick={save}>{props?.dict.save}</ActionButton>
+                <ActionButton onClick={save} className="w-[100px]">{props?.dict.save}</ActionButton>
+                <button onClick={() => router.back()} className="nav-link w-[100px]">{props.dict.back}</button>
             </div>
 
             <hr />

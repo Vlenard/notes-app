@@ -18,6 +18,9 @@
     "edit": "Edit",
     "delete": "Delete",
     "new": "New",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
     "error": {
         "registration": "Something goes wrong!",
         "editProfileEmpty": "Forms fields are not filled"

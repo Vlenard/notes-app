@@ -1,7 +1,7 @@
 "use client"
 
 import { Note } from "@prisma/client";
-import ActionButton from "../auth/buttons/ActionButton";
+import ActionButton from "../inputs/ActionButton";
 import { useParams, useRouter } from "next/navigation";
 
 type Props = {
@@ -35,9 +35,6 @@ const NotesIndex = (props: Props) => {
     const edit = () => {
         router.push(`/${params.lang}/${params.user}/${props.note.id}`);
     };
-
-    console.log(props.dict);
-    
 
     return (
         <div className="flex flex-col min-h-[300px] min-w-[300px] p-10 rounded-lg shadow-lg">

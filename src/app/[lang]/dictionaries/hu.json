@@ -18,6 +18,9 @@
     "save": "Mentés",  
     "saved": "Mentve",
     "new": "Új",
+    "light": "Világos",
+    "dark": "Sötét",
+    "system": "Rendszer",
     "error": {
         "registration": "Nem sikerült regisztrálni!",
         "editProfileEmpty": "Nincs kitöltve az űrlap"

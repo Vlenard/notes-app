@@ -1,16 +1,15 @@
 import { getServerSession } from "next-auth";
 import { getDictionary } from "../../dictionaries";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
+import { prisma } from "@/prismaClient";
 
 type Props = {
     params: {
-        lang: string
+        lang: string;
+        user: string;
     }
 }
-
-const prisma = new PrismaClient();
 
 const isAdmin = async (email: string): Promise<boolean> => {
 
@@ -31,11 +30,11 @@ export default async function Page(props: Props) {
     const session = await getServerSession(authOptions);
     const admin = await isAdmin(session?.user?.email as string);
 
-    if(!admin) redirect(`/${props.params.lang}/notes`);
+    if(!admin) redirect(`/${props.params.lang}/${props.params.user}`);
 
     return (
-        <div>
-            admin
+        <div className="flex justify-center w-screen pt-24 md:pt-20 ">
+            
         </div>
     );
 }

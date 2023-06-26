@@ -31,7 +31,7 @@ export default async function Layout(props: Props) {
 
     return (
         <>
-            <Navbar title={dict.title}>
+            <Navbar title={dict.title} dict={dict}>
                 <Link className="nav-link" href={`${props.params.lang}/${props.params.user}/new`}>{dict.write}</Link>
                 <Link className="nav-link" href={`${props.params.lang}/${props.params.user}#myNotes`} scroll={false}>{dict.myNotes}</Link>
                 <Link className="nav-link" href={`${props.params.lang}/${props.params.user}/profile`}>{dict.profile}</Link>

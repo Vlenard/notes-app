@@ -1,6 +1,6 @@
 "use client"
 
-import ActionButton from "@/components/auth/buttons/ActionButton";
+import ActionButton from "@/components/inputs/ActionButton";
 import FormInput from "@/components/inputs/FormInput";
 import Submit from "@/components/inputs/Submit";
 import { signOut, useSession } from "next-auth/react";

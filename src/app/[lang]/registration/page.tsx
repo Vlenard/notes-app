@@ -23,7 +23,7 @@ export default async function Page(props: Props) {
 
     return (
         <>
-            <Navbar title={dict.registration}>
+            <Navbar title={dict.registration} dict={dict}>
                 <Link className="nav-link" href={`${props.params.lang}/signin`}>{dict.signin}</Link>
                 <Link className="nav-link" href={`/${props.params.lang}`}>{dict.back}</Link>
             </Navbar>

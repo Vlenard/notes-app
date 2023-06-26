@@ -19,6 +19,13 @@ Registrate admin http://localhost:3000/api/auth/admin?[email=value]
 
 ## Versions
 
+### 0.1.7
+ * Theme switching
+ * Lang switching
+ * Responsive navbar
+ * Design improvements
+ * Minimal coockies
+
 ### 0.1.6
  * Profile
     - Delete

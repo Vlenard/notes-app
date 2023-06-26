@@ -1,14 +1,16 @@
 "use client"
 
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
+ "js-cookies";
 
 type Props = {
     children: React.ReactNode;
 };
 
 type Context = [
-    theme: "dark" | "light",
+    theme: "dark" | "light" |  "system",
     setTheme: React.Dispatch<React.SetStateAction<"dark" | "light" | "system">>
 ];
 
@@ -18,8 +20,18 @@ const ThemeProvider = (props: Props) => {
 
     const getSystemTheme = (): "dark" | "light" => window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
-    const [theme, setTheme] = useState<"dark" | "light" | "system">("system");
-    const [actualTheme, setActualTheme] = useState<"dark" | "light">("dark");
+    const [theme, setTheme] = useState<"dark" | "light" | "system">(() => {
+        const coockie = Cookies.get("theme");
+        
+        if(coockie) return coockie as "dark" | "light" | "system";
+
+        return "system"
+    });
+    const [actualTheme, setActualTheme] = useState<"dark" | "light">(() => {
+        if(theme !== "system") return theme; 
+
+        return getSystemTheme();
+    });
 
     const onSysThemeChange = (ev?: MediaQueryListEvent): void => {
         if(theme === "system"){
@@ -36,11 +48,12 @@ const ThemeProvider = (props: Props) => {
     }, []);
 
     useEffect(() => {
+        Cookies.set("theme", theme);
         setActualTheme(theme !== "system" ? theme as "dark" | "light" : getSystemTheme());
     }, [theme]);
 
     return (
-        <themeContext.Provider value={[actualTheme, setTheme]}>
+        <themeContext.Provider value={[theme, setTheme]}>
             <html className={actualTheme}>
                 <head>
                     <script src="http://localhost:8097"></script>    

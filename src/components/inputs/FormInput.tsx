@@ -17,7 +17,7 @@ const FormInput = React.forwardRef((props: Props, ref: React.ForwardedRef<HTMLIn
             {props.label}
             <br />
             <input 
-                className={`w-full rounded-lg py-2 px-3 dark:text-lightGrey dark:bg-darkGrey focus:border-[#0095ff] ${props.className}`}
+                className={`w-full rounded-lg py-2 px-3 dark:text-lightGrey dark:bg-darkGrey focus:border-fblue ${props.className}`}
                 type={props.type} 
                 ref={ref} 
                 placeholder={props.placeholder} 

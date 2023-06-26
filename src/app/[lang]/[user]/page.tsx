@@ -25,7 +25,7 @@ export default async function Page(props: Props) {
 
     return (
         <>
-            <div className="w-screen h-screen flex flex-col space-y-10 justify-center items-center">
+            <div className="w-screen h-screen flex flex-col space-y-10 px-28 justify-center items-center">
                 <p className="font-hand text-8xl dark:text-lightGrey text-center">Hello {user?.name}</p>
                 <Link className="nav-link text-4xl px-10 py-5 rounded-full" href={`/${props.params.lang}/notes#myNotes`} scroll={false}>
                     {dict.myNotes}
