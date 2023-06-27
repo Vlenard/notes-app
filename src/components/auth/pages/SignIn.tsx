@@ -4,7 +4,7 @@ import FormInput from "@/components/inputs/FormInput";
 import Submit from "@/components/inputs/Submit";
 import { signIn, useSession } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
-import React, { FormEvent, useEffect, useRef } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 
 type Props = {
     dict: any;
@@ -17,20 +17,23 @@ const SignIn = (props: Props) => {
     const params = useParams();
     const email_ref = useRef<HTMLInputElement>(null);
     const password_ref = useRef<HTMLInputElement>(null);
+    const [error, setError] = useState<string>("");
 
     const onSubmit = async (ev: FormEvent) => {
         ev.preventDefault();
         if (email_ref.current && password_ref.current) {
-            signIn("credentials", { username: email_ref.current.value, password: password_ref.current.value, redirect: false});
+            const res = await signIn("credentials", { username: email_ref.current.value, password: password_ref.current.value, redirect: false});
+            if(res?.error){
+                setError(props.dict.error.signin);
+            }    
         }
     };
 
-    useEffect((): void => {
+    useEffect((): void => {    
         if(session.status === "authenticated"){
             router.push(`${params.lang}/${session.data?.user?.name}`);
         }
     }, [session]);
-
     return (
         <div className="pt-24 sm:pt-20 px-16 flex justify-center">
             <form action="#" onSubmit={onSubmit}>
@@ -39,6 +42,13 @@ const SignIn = (props: Props) => {
                     <FormInput label="Password" placeholder="***" ref={password_ref} type="password" />
               
                     <Submit>{props.dict.signin}</Submit>
+                    {
+                        error && (
+                            <span className="text-center text-red-500">
+                                {error}
+                            </span>
+                        )
+                    }
                 </div>
             </form>
         </div>

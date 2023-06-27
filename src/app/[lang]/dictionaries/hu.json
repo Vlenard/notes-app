@@ -21,9 +21,11 @@
     "light": "Világos",
     "dark": "Sötét",
     "system": "Rendszer",
+    "users": "Felhasználók",
     "error": {
         "registration": "Nem sikerült regisztrálni!",
-        "editProfileEmpty": "Nincs kitöltve az űrlap"
+        "editProfileEmpty": "Nincs kitöltve az űrlap!",
+        "signin": "Nem sikerült bejelentkezni!"
     },
     "warnings": {
         "editProfile": "Adat változás esetén újra be kell jelentkezned",

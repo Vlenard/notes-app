@@ -15,9 +15,16 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Registrate admin http://localhost:3000/api/auth/admin?[email=value]
+Registrate admin http://localhost:3000/api/auth/admin
 
 ## Versions
+
+### 0.1.8 -> production
+ * Fixed theme error
+ * Admin page
+   - Promote to admin
+   - Permission to delete user
+ * Error fix in sign in
 
 ### 0.1.7
  * Theme switching

@@ -21,9 +21,11 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System",
+    "users": "Users",
     "error": {
         "registration": "Something goes wrong!",
-        "editProfileEmpty": "Forms fields are not filled"
+        "editProfileEmpty": "Forms fields are not filled!",
+        "signin": "Faild to sign in!"
     },
     "warnings": {
         "editProfile": "After the data changes you have to sign in again",

@@ -1,9 +1,8 @@
 "use client"
 
 import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useContext } from "react";
- "js-cookies";
 
 type Props = {
     children: React.ReactNode;
@@ -18,45 +17,28 @@ const themeContext = React.createContext<Context | null>(null);
 
 const ThemeProvider = (props: Props) => {
 
-    const getSystemTheme = (): "dark" | "light" => window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-
     const [theme, setTheme] = useState<"dark" | "light" | "system">(() => {
         const coockie = Cookies.get("theme");
-        
+
         if(coockie) return coockie as "dark" | "light" | "system";
 
         return "system"
     });
-    const [actualTheme, setActualTheme] = useState<"dark" | "light">(() => {
-        if(theme !== "system") return theme; 
-
-        return getSystemTheme();
-    });
-
-    const onSysThemeChange = (ev?: MediaQueryListEvent): void => {
-        if(theme === "system"){
-            setActualTheme(ev?.matches ? "dark" : "light");
-        }
-    };
-
-    useEffect(() => {
-        const media: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
-        media.addEventListener("change", onSysThemeChange);
-        return () => {
-            media.removeEventListener("change", onSysThemeChange);
-        };
-    }, []);
-
-    useEffect(() => {
+    const themeClass = useMemo<"dark" | "light">(() => {
         Cookies.set("theme", theme);
-        setActualTheme(theme !== "system" ? theme as "dark" | "light" : getSystemTheme());
+        
+        if(theme === "system"){
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+
+        return theme as "dark" | "light";
     }, [theme]);
 
     return (
         <themeContext.Provider value={[theme, setTheme]}>
-            <html className={actualTheme}>
+            <html className={themeClass}>
                 <head>
-                    <script src="http://localhost:8097"></script>    
+                    <script src="http://localhost:8097"></script>
                 </head>
                 <body className="dark:bg-darkGrey">
                     {props.children}

@@ -7,6 +7,15 @@ export const prisma = globalForPrisma.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
+export const getUsers = async () => {
+    return (await prisma.user.findMany()).map(el => {
+        const data = {...el};
+        //@ts-ignore
+        delete data.password;
+        return data;
+    });
+};
+
 export const getUser = async (email: string) => {
     const user = await prisma.user.findUnique({
         where: {
