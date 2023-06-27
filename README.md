@@ -1,6 +1,8 @@
 # Notes-app
 Notes app with NextJS & Tailwind & prisma
 
+It's a simple note-taking application, which can contain mistakes or poorly executed parts. This is a simple exercise, learning project
+
 ## Getting Started
 
 First, run the development server:
