@@ -19,7 +19,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Registrate admin http://localhost:3000/api/auth/admin
 
+
+
 ## Versions
+
+-----------
+ This project made with zero experience. Now it's clear why it's so terrible.
+ Theme switching is not working well. I store some data like theme or lang in wrong way, I used cookies instead of 
+ localstorage. I made unnecessary step to authorize users in api request.
+
+-----------
 
 ### 0.1.8 -> production
  * Fixed theme error
